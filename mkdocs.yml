@@ -1,0 +1,38 @@
+site_name: Plain Storage Tech Guide
+
+theme:
+  name: material
+  features:
+    - navigation.tabs    
+    - navigation.sections 
+    - navigation.expand    
+    - toc.integrate
+    - content.code.copy
+    - content.tooltips
+    - katex
+  palette: 
+    - scheme: default
+      primary: blue
+      accent: light-blue
+    
+  font:
+    text: Roboto
+    code: Roboto Mono
+
+markdown_extensions:
+  - toc:
+      toc_depth: 6
+      permalink: true
+  - pymdownx.superfences
+  - lirrum_syntax
+
+extra_css:
+  - stylesheets/extra.css?v=2
+  - https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css
+
+extra_javascript:
+  - https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js
+  - https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js
+  - javascripts/lirrum.js
+  - javascripts/katex-render.js
+  - javascripts/image-caption.js

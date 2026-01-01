@@ -1,0 +1,2 @@
+[markdown.extensions]
+lirrum_syntax = lirrum_markdown:makeExtension
