@@ -1,0 +1,51 @@
+name: Deploy MkDocs to GitHub Pages
+
+on:
+  push:
+    branches: [ main ]
+    paths:  # 仅关键文件变更时触发
+      - 'docs/**'
+      - 'mkdocs.yml'
+      - 'requirements.txt'
+      - 'lirrum_markdown/**'
+      - '.github/workflows/deploy.yml'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 拉取最新代码（最小化历史）
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1  # 仅拉取最新提交
+
+      - name: 配置Python环境
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.8'
+          cache: 'pip' 
+
+      - name: 缓存Python依赖
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+          restore-keys: ${{ runner.os }}-pip-
+
+      - name: 静默安装依赖
+        run: |
+          pip install --upgrade pip --quiet
+          pip install -r requirements.txt --quiet
+
+      - name: 静默构建站d点
+        run: mkdocs build --strict --quiet
+
+      - name: 部署到GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./site
+          force_orphan: true
+          publish_branch: gh-pages
+          enable_jekyll: false
+          allow_empty_commit: false
