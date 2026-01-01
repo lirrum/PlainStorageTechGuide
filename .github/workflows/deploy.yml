@@ -3,7 +3,7 @@ name: Deploy MkDocs to GitHub Pages
 on:
   push:
     branches: [ main ]
-    paths:  # 仅关键文件变更时触发
+    paths:  
       - 'docs/**'
       - 'mkdocs.yml'
       - 'requirements.txt'
@@ -17,13 +17,13 @@ jobs:
       - name: 拉取最新代码（最小化历史）
         uses: actions/checkout@v4
         with:
-          fetch-depth: 1  # 仅拉取最新提交
+          fetch-depth: 1  
 
       - name: 配置Python环境
         uses: actions/setup-python@v5
         with:
           python-version: '3.8'
-          cache: 'pip' 
+          cache: 'pip'
 
       - name: 缓存Python依赖
         uses: actions/cache@v3
@@ -37,7 +37,7 @@ jobs:
           pip install --upgrade pip --quiet
           pip install -r requirements.txt --quiet
 
-      - name: 静默构建站d点
+      - name: 静默构建站点
         run: mkdocs build --strict --quiet
 
       - name: 部署到GitHub Pages
