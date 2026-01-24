@@ -1,0 +1,192 @@
+/* 导航栏调整 */
+.md-header {
+  min-height: 0 !important;
+  padding: 0 !important;
+}
+
+.md-header__inner {
+  min-height: 0 !important;
+  padding: 0 !important;
+}
+
+.md-header__title {
+  height: auto !important;
+  margin: 0 !important;
+  padding: 0.2rem 0.5rem !important;
+  line-height: 1.2 !important;
+}
+
+.md-header__search {
+  height: auto !important;
+  margin: 0.2rem 0.5rem !important;
+}
+
+.md-tabs__list {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-content: flex-start !important;
+  margin: 0 !important;
+  padding: 0.3rem 0.3rem !important;
+  line-height: 1 !important;
+  border-collapse: collapse !important;
+}
+
+.md-tabs__item {
+  height: auto !important;
+  margin: 0.05rem 0.1rem !important;
+  padding: 0.05rem 0.2rem !important; 
+  line-height: 1 !important;
+  vertical-align: top !important;
+}
+
+.md-tabs__link {
+  padding: 0.05rem 0.2rem !important;
+  line-height: 1.1 !important; 
+  font-size: 1.5em !important;
+}
+
+/* 导航高亮 */
+.md-nav__link--active {
+  color: var(--md-accent-fg-color) !important;
+  font-weight: bold;
+}
+
+/* 导航栏增强 */
+.md-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.md-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.md-tabs__list {
+  flex-wrap: wrap;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.md-tabs__item {
+  flex-shrink: 0;
+}
+
+/* 侧边栏宽度调整 */
+.md-grid { max-width: 99%; }
+.md-sidebar { width: 11rem; }
+.md-sidebar--primary { width: 11rem; }
+.md-sidebar__scrollwrap { width: 11rem; }
+.md-sidebar__inner { width: 11rem; }
+.md-content { margin-left: 0; padding-left: 1rem; }
+
+@media screen and (max-width: 76.1875em) {
+  .md-sidebar { width: 100%; }
+}
+
+.md-main {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+.md-main__inner {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+.md-content {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+/* 确保导航栏容器有合适的滚动设置 */
+.md-sidebar__scrollwrap {
+  overflow-y: auto;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  scroll-padding: 20px;
+}
+
+/* 导航链接基础样式增强 */
+.md-nav__link {
+  transition: all 0.2s ease !important;
+  border-radius: 4px !important;
+  position: relative !important;
+}
+
+/* 当前活动导航项的高亮样式 */
+.md-nav__link--active {
+  color: var(--md-accent-fg-color) !important;
+  font-weight: bold !important;
+  background-color: rgba(0, 0, 0, 0.05) !important;
+}
+
+/* 为多级导航添加缩进 */
+.md-nav__item--nested > .md-nav__link {
+  font-weight: 500 !important;
+}
+
+.md-nav__item--nested .md-nav__item {
+  padding-left: 1rem !important;
+}
+
+/* 确保导航栏高度和滚动容器 */
+.md-sidebar--primary {
+  height: calc(100vh - 60px) !important; 
+  overflow: hidden !important;
+}
+
+.md-sidebar__scrollwrap {
+  height: 100% !important;
+  max-height: 100vh !important;
+}
+
+/* 移动端适配 */
+@media screen and (max-width: 76.1875em) {
+  .md-sidebar--primary {
+    height: auto !important;
+  }
+  
+  .md-sidebar__scrollwrap {
+    max-height: 70vh !important;
+  }
+}
+
+/* 标题锚点样式 */
+.md-typeset :target {
+  scroll-margin-top: 80px;
+  background: linear-gradient(90deg, rgba(52, 152, 219, 0.1) 0%, transparent 100%);
+  padding-left: 10px;
+  border-left: 3px solid #3498db;
+  animation: highlight-fade 1.5s ease;
+}
+
+@keyframes highlight-fade {
+  0% { background: linear-gradient(90deg, rgba(52, 152, 219, 0.3) 0%, transparent 100%); }
+  100% { background: linear-gradient(90deg, rgba(52, 152, 219, 0.1) 0%, transparent 100%); }
+}
+
+/* 顶部阅读进度指示栏 */
+.reading-progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 3px;
+    background: linear-gradient(90deg, #ff6b6b, #4ecdc4);
+    z-index: 9999;
+    transition: width 0.3s ease;
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}

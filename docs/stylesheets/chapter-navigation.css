@@ -1,0 +1,412 @@
+/* 底部导航栏样式*/
+.chapter-navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 2.5rem 0 1.5rem 0;
+    padding: 1.2rem 1rem;
+    border-top: 1px solid #e0e0e0;
+    border-bottom: 1px solid #e0e0e0;
+    transition: all 0.3s ease;
+    background: linear-gradient(135deg, #f8f9fa 0%, #f1f3f4 100%);
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    position: relative;
+    overflow: hidden;
+    min-height: 110px;
+}
+
+.chapter-navigation::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #3498db, #2ecc71, #f39c12);
+    z-index: 1;
+}
+
+.chapter-nav-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.7rem 1rem;
+    background: #2c3e50;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 6px rgba(44, 62, 80, 0.2);
+    border: none;
+    cursor: pointer;
+    min-width: 140px;
+    text-align: center;
+    gap: 0.3rem;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    height: 75px;
+    justify-content: center;
+}
+
+.chapter-nav-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: all 0.6s ease;
+    z-index: -1;
+}
+
+.chapter-nav-btn:hover::before {
+    left: 100%;
+}
+
+.chapter-nav-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(44, 62, 80, 0.25);
+    background: #34495e;
+}
+
+.chapter-nav-btn:active {
+    transform: translateY(0);
+}
+
+.nav-direction {
+    font-size: 1.1em;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: 0.3px;
+    color: #ffffff;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+    margin-bottom: 2px;
+}
+
+.nav-chapter-title {
+    font-size: 0.85em;
+    opacity: 0.9;
+    line-height: 1.2;
+    max-width: 130px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 500;
+    padding: 0 3px;
+}
+
+.chapter-nav-prev {
+    align-items: flex-start;
+    background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+}
+
+.chapter-nav-prev:hover {
+    background: linear-gradient(135deg, #3da3e8 0%, #2c89c8 100%);
+}
+
+.chapter-nav-next {
+    align-items: flex-end;
+    background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+}
+
+.chapter-nav-next:hover {
+    background: linear-gradient(135deg, #35d77a 0%, #2dbf6a 100%);
+}
+
+.chapter-current-title {
+    text-align: center;
+    flex-grow: 1;
+    padding: 0 2rem;
+    position: relative;
+    z-index: 1;
+    min-height: 85px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.chapter-current-title::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #e0e0e0, transparent);
+    z-index: -1;
+}
+
+.chapter-current-title .subtitle {
+    font-size: 0.85em;
+    color: #7f8c8d;
+    margin-bottom: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 0.3rem;
+}
+
+.chapter-current-title .subtitle::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 35%;
+    right: 35%;
+    height: 1.5px;
+    background: linear-gradient(90deg, #3498db, #2ecc71);
+    border-radius: 1px;
+}
+
+.chapter-current-title .title {
+    font-size: 1.6em;
+    font-weight: 800;
+    color: #2c3e50;
+    line-height: 1.3;
+    margin-top: 0.5rem;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+    position: relative;
+    display: inline-block;
+    padding: 0.4rem 0.9rem;
+    background: white;
+    border-radius: 6px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+    letter-spacing: 0.3px;
+}
+
+.chapter-current-title .title::before,
+.chapter-current-title .title::after {
+    content: '✦';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #3498db;
+    font-size: 0.6em;
+    opacity: 0.5;
+}
+
+.chapter-current-title .title::before {
+    left: -6px;
+}
+
+.chapter-current-title .title::after {
+    right: -6px;
+}
+
+/* 黑夜模式 */
+.dark-mode .chapter-navigation {
+    border-top-color: #444;
+    border-bottom-color: #444;
+    background: linear-gradient(135deg, #1e1e1e 0%, #2a2a2a 100%);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.dark-mode .chapter-nav-btn {
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+}
+
+.dark-mode .chapter-nav-btn:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.dark-mode .chapter-nav-prev {
+    background: linear-gradient(135deg, #3a506b 0%, #2c3e50 100%);
+}
+
+.dark-mode .chapter-nav-prev:hover {
+    background: linear-gradient(135deg, #4a6185 0%, #3a506b 100%);
+}
+
+.dark-mode .chapter-nav-next {
+    background: linear-gradient(135deg, #27ae60 0%, #219653 100%);
+}
+
+.dark-mode .chapter-nav-next:hover {
+    background: linear-gradient(135deg, #2dbf6a 0%, #27ae60 100%);
+}
+
+.dark-mode .chapter-current-title::before {
+    background: linear-gradient(90deg, transparent, #444, transparent);
+}
+
+.dark-mode .chapter-current-title .subtitle {
+    color: #b0b0b0;
+}
+
+.dark-mode .chapter-current-title .title {
+    color: #ffffff;
+    background: #2a2a2a;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+.dark-mode .chapter-current-title .title::before,
+.dark-mode .chapter-current-title .title::after {
+    color: #64b5f6;
+}
+
+/* 移动端适配 */
+@media (max-width: 1024px) {
+    .chapter-navigation {
+        margin: 2rem 0 1.2rem 0;
+        padding: 1rem 0.8rem;
+        flex-direction: column;
+        gap: 1.2rem;
+        min-height: auto;
+    }
+    
+    .chapter-current-title {
+        order: -1;
+        width: 100%;
+        margin-bottom: 0.6rem;
+        padding: 0;
+        min-height: auto;
+    }
+    
+    .chapter-current-title .title {
+        font-size: 1.4em;
+        margin-top: 0.4rem;
+        padding: 0.3rem 0.7rem;
+    }
+    
+    .chapter-current-title .subtitle {
+        margin-bottom: 0.4rem;
+        font-size: 0.8em;
+    }
+    
+    .chapter-nav-btn {
+        width: 100%;
+        max-width: 260px;
+        min-width: auto;
+        padding: 0.6rem 1rem;
+        height: 70px;
+    }
+    
+    .chapter-nav-prev,
+    .chapter-nav-next {
+        align-items: center;
+    }
+    
+    .nav-direction {
+        font-size: 1em;
+        margin-bottom: 2px;
+    }
+    
+    .nav-chapter-title {
+        font-size: 0.8em;
+        max-width: 200px;
+    }
+}
+
+@media (max-width: 768px) {
+    .chapter-navigation {
+        margin: 1.8rem 0 1rem 0;
+        padding: 0.9rem 0.7rem;
+        border-radius: 8px;
+    }
+    
+    .chapter-current-title .title {
+        font-size: 1.3em;
+        padding: 0.3rem 0.6rem;
+        margin-top: 0.3rem;
+    }
+    
+    .chapter-current-title .subtitle {
+        font-size: 0.75em;
+        letter-spacing: 0.8px;
+        margin-bottom: 0.3rem;
+    }
+    
+    .chapter-nav-btn {
+        padding: 0.5rem 0.8rem;
+        border-radius: 6px;
+        height: 65px;
+    }
+    
+    .nav-direction {
+        font-size: 0.95em;
+    }
+    
+    .nav-chapter-title {
+        font-size: 0.75em;
+        max-width: 180px;
+    }
+}
+
+@media (max-width: 480px) {
+    .chapter-navigation {
+        margin: 1.5rem 0 0.8rem 0;
+        padding: 0.8rem 0.6rem;
+        border-radius: 6px;
+    }
+    
+    .chapter-current-title .title {
+        font-size: 1.1em;
+        font-weight: 700;
+        margin-top: 0.2rem;
+        padding: 0.2rem 0.5rem;
+    }
+    
+    .chapter-current-title .subtitle {
+        font-size: 0.7em;
+        margin-bottom: 0.2rem;
+    }
+    
+    .chapter-nav-btn {
+        padding: 0.4rem 0.7rem;
+        border-radius: 5px;
+        height: 60px;
+    }
+    
+    .nav-direction {
+        font-size: 0.9em;
+        margin-bottom: 1px;
+    }
+    
+    .nav-chapter-title {
+        font-size: 0.7em;
+        max-width: 150px;
+    }
+    
+    .chapter-current-title .title::before,
+    .chapter-current-title .title::after {
+        display: none;
+    }
+}
+
+/* 动画效果 */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.chapter-navigation {
+    animation: fadeInUp 0.4s ease-out;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(52, 152, 219, 0.2);
+    }
+    70% {
+        box-shadow: 0 0 0 4px rgba(52, 152, 219, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(52, 152, 219, 0);
+    }
+}
+
+.chapter-current-title .title {
+    animation: pulse 2s infinite 1s;
+}
