@@ -1,0 +1,2027 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../02-preface/">
+      
+      
+        <link rel="next" href="../04-chapter-01/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>第0章:初识储电 - Plain Storage Tech Guide</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/core.css">
+    
+      <link rel="stylesheet" href="../stylesheets/components.css">
+    
+      <link rel="stylesheet" href="../stylesheets/syntax.css">
+    
+      <link rel="stylesheet" href="../stylesheets/themes.css">
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="light-blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#0" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href=".." title="Plain Storage Tech Guide" class="md-header__button md-logo" aria-label="Plain Storage Tech Guide" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Plain Storage Tech Guide
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              第0章:初识储电
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="light-blue"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  PLST
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../01-contents/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  目录
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../02-preface/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  引言
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第0章:初识储电
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../04-chapter-01/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第1章:物流基础
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../05-chapter-02/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第2章:分类基础
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../06-chapter-03/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第3章:打包基础
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../07-chapter-04/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第4章:盒子的分类和储存
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../08-chapter-05/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第5章:不可堆叠处理
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../09-chapter-06/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第6章:全物品与自适应基础
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../10-chapter-07/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第7章:矿车流初步
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../11-chapter-08/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第8章:盒子流初步
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../12-chapter-09/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第9章:现代大宗处理
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../13-chapter-10/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第10章:非全物品储电
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../14-chapter-11/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第11章:编码初步
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../15-chapter-12/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第12章:编码进阶
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../16-chapter-13/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第13章:现代全物品
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../17-chapter-14/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  第14章:展望未来
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Plain Storage Tech Guide" class="md-nav__button md-logo" aria-label="Plain Storage Tech Guide" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Plain Storage Tech Guide
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PLST
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-contents/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    目录
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-preface/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    引言
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第0章:初识储电
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第0章:初识储电
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#01" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.1 储电的定义
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="0.1 储电的定义">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#011" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.1.1 参考定义
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#012" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.1.2 储电与生电的联系
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#013" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.1.3 其他常见概念
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#02" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.2 储电发展史
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="0.2 储电发展史">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#021" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.2.1 新生代
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#022" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.2.2 近代
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#023" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.2.3 现代
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#03" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.3 储电学习前置
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="0.3 储电学习前置">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#031-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.3.1 生电-红石基础
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="0.3.1 生电-红石基础">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        （1）掉落物机制
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        （2）比较器性质补充
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        （3）★ 漏斗
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        （4）投掷器、发射器
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        （5）漏斗矿车
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        （6）其他容器
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#032" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.3.2 其它红石分支
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="0.3.2 其它红石分支">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        （1）数电
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        （2）模电
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        （3）械电
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        （4）绿萌
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#033-mod" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.3.3 辅助mod
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#04" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.4 储电的系统性处理思维
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="0.4 储电的系统性处理思维">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#041" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.4.1 转移性
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#042" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.4.2 常用操作
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#043-ui" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.4.3 UI
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#044" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.4.4 设计权重
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#05" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.5 储电圈
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="0.5 储电圈">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#051" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.5.1 主要圈子
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#052" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.5.2 储圈风气问题
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="0.5.2 储圈风气问题">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#2_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        （2）编码神化论
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        （3）吃瓜、开团、间谍
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#053" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.5.3混圈指南和学习建议
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="0.5.3混圈指南和学习建议">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        （1）培养批判性思维
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        （2）实践、实验才实在
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        （3）积极交流、发问
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        （4）多看多想多积累见识
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        （5）针对非新人
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        0.小结
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-chapter-01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第1章:物流基础
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-chapter-02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第2章:分类基础
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-chapter-03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第3章:打包基础
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-chapter-04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第4章:盒子的分类和储存
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-chapter-05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第5章:不可堆叠处理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-chapter-06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第6章:全物品与自适应基础
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-chapter-07/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第7章:矿车流初步
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11-chapter-08/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第8章:盒子流初步
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12-chapter-09/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第9章:现代大宗处理
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-chapter-10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第10章:非全物品储电
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14-chapter-11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第11章:编码初步
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../15-chapter-12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第12章:编码进阶
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../16-chapter-13/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第13章:现代全物品
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../17-chapter-14/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    第14章:展望未来
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="0">第0章:初识储电<a class="headerlink" href="#0" title="Permanent link">&para;</a></h1>
+<p>想必各位读者对“储电”这个词并不陌生，目前它已经在整个MC技术圈流行开来，几乎每个玩生电/创电/棍电的都知道有这么个东西。本章作为系统学习储电的第一章，并不涉及过多的实践内容，将从储电的定义、历史、圈子、学习准备等方面展开叙述。读者需重点关注0.1（储电的定义）和0.3（储电前置学习）两个小节，其余部分可以先略读，在阅读了前面8章后再回过头来细读。</p>
+<h2 id="01">0.1 储电的定义<a class="headerlink" href="#01" title="Permanent link">&para;</a></h2>
+<h3 id="011">0.1.1 参考定义<a class="headerlink" href="#011" title="Permanent link">&para;</a></h3>
+<p>目前并没有公认的标准储电定义，甚至很多储电圈内的学者对储电的范围都是模糊的，所以这里仅提供<span class="PSTG-green">储电的参考定义</span>:<span class="PSTG-red">储电（Storage Tech），简称"ST"全称储存电路，是一门研究如何储存、运输和处理物品或容器的红石技术</span>。储电是圈内常说的"红石六大分支"之一，是一门综合性的复杂技术。</p>
+<p>然后列举一些圈内比较权威的研究者的定义：</p>
+<ul>
+<li>储电就是“存”和“取”。 ——<a href="https://space.bilibili.com/353023126">Trice054</a></li>
+<li>对于不同玩家来说，储电有不同的概念，如图:——<a href="https://space.bilibili.com/89892396">Zai_yu_you</a></li>
+</ul>
+<p><img alt="img预留位" class="PSTG-img" data-title="img预留位" src="../images/1.jpg" width="30%" /></p>
+<p>定义本身并不重要，我们对于储电的理解都来源于研究经历和见闻，相信读者如果深入研究了储电，自然会明白储电到底是个什么东西，那时候这个定义也就不重要了。</p>
+<h3 id="012">0.1.2 储电与生电的联系<a class="headerlink" href="#012" title="Permanent link">&para;</a></h3>
+<p>首先必须要明确的<span class="PSTG-red">是储电不是生电</span>，二者不构成部分与整体的关系，都是红石领域中非常重要的主要分支。要厘清二者的关系需要知道<span class="PSTG-green">生电的定义(仅供参考)</span>：<span class="PSTG-red">广义生电是指一切利用游戏机制达成某些目的，用以辅助生存的技术</span>。其关注的重点是对游戏机制的挖掘、理解和运用，而储电则更关心物品的储存、运输和处理，这是最好辨别的点。</p>
+<p>例如:一台带有收集的<a href="https://www.bilibili.com/video/BV1Tk4y167aU">EOL</a>，它可以分成3个部分来看：一是刷怪部分，这里重点利用了光照更新机制、更新抑制/更新跳略和刷怪机制，几乎整个部分都是从代码里扣出来的，显然属于生电的范畴（<span class="PSTG-red">常见误区：生电并不一定要用到红石，尽管它是红石分支之一</span>）；而收集系统则关注于对生成的产物的运输、打包、储存和综合管理等等（实际上更复杂），显然属于储电的领域；最难以界定的就是处死。这种大型收集的处死，既要研究如何高效低卡地处死怪物等生电问题，往往还要考虑产物的输出，这就涉及到矿车了，很多时候是储电问题，所以这一部分不好界定，往往视为储电和生电的融合部分，类似的例子还有很多。</p>
+<p>其实在现实中也有这种分科，最好区别的就是数学和物理了，那这俩来类比想必很容易理解生电和储电的关系。生电是储电的基础之一，储电利用的所有机制都是生电研究出来的，好比物理的所有公式、图像本身就是数学的研究内容；储电在一定程度上也服务于生电，很多储电设施就是为了辅助生电而生的，最典型的例子就是收集；不过也有很多的储电内容与生电关联性不强，这就是圈内常提到的<span class="PSTG-green">“生储”</span>和<span class="PSTG-green">“创储”</span>。前者服务于生电或者需要考虑机器实装，后者更在意创新想法，不过个人认为分科分到储电这一级就够了，不用细分生创储。</p>
+<p>此外，储电是从生电中脱离出来的（详见0.2），储电和生电的发展由相似之处，不过分开以后双方对彼此的影响其实很小。像更新抑制，对生电而言极其重要，但是谁要是在储电机器里用上这玩意，分分钟被同服后勤骂死。</p>
+<p>说了这么多只是分别储电和生电的区别，二者没有高低贵贱之分<span class="PSTG-deleteline">(反正都是牛马)</span>，都是MC中极其重要的技术领域，请勿刻意贬低或拔高某一方。</p>
+<h3 id="013">0.1.3 其他常见概念<a class="headerlink" href="#013" title="Permanent link">&para;</a></h3>
+<ul>
+<li><span class="PSTG-green">加权数量</span>:物品的堆叠数有64堆叠、16堆叠和不可堆叠，其对应的权重分别为1、4、64，而加权数量是物品原始数量 × 数量权重之和，例如：62个白桦木板 + 12个雪球 + 4把剪刀，其对应加权数量为 62×1 + 12×4 + 4×64 = 366。</li>
+<li><span class="PSTG-green">信号强度</span>:指红石粉/中继器和比较器的输出/充能方块的信号登记，常见取值集合为$\{n∈Z|1≤n≤15\}$。</li>
+<li><span class="PSTG-green">种</span>:具有相同物品ID的物品算同种物品（NBT不同但ID相同的物品视实际情况而定，又是同种，有时不同种）。种数是指种的数量，也可以叫种类数。</li>
+<li><span class="PSTG-green">类</span>:具有相似特征的物品的集合。例如：不可堆叠类（共同特征是不可堆叠）、木头类（材质）、建筑方块类（用途）……类数是指类的数量。</li>
+<li><span class="PSTG-green">组</span>:加权数量 = 堆叠数量的物品集合。例如：1组雪球 = 16个雪球，1组红石块 = 64个红石块。</li>
+</ul>
+<h2 id="02">0.2 储电发展史<a class="headerlink" href="#02" title="Permanent link">&para;</a></h2>
+<p>储电起源于约2020年，按时间先后顺序，我将储电发展大致分为了3个阶段：新生代、近代和现代，需要强调的是3个时期并无明显的分隔事件，并且现在储电的历史并不长，读者权当资料卡片看就行。</p>
+<h3 id="021">0.2.1 新生代<a class="headerlink" href="#021" title="Permanent link">&para;</a></h3>
+<p>国内外储电史有很大的不同。国内在2018年左右生电开始萌芽，生产力大幅提高导致物资越发丰富，产生了2个需求:①分类储存管理物资 ②半/全自动处理物资。基于需求①，<a href="https://space.bilibili.com/1446187">新兵sinbing</a>大佬在2020年研发出了国内公认的第一台流行大型综合型储存机器——<a href="https://www.bilibili.com/video/BV1dK411p7BK">新兵全物品</a>。这一成就通常被视为国内储电史的开端，其重要性相当于阿拉伯数字于数学；基于需求②，<a href="https://space.bilibili.com/15020053">金合欢acaciachan</a>、<a href="https://space.bilibili.com/471306518">萌萌de小公举</a>等人设计了喷射合成站等机器；国外的同时期历史相似，也是需求①催生了储电的开端——<a href="https://www.youtube.com/watch?v=cSdG-GxQXHo">SCI</a>服务器研发的第一台<a href="">Main Storage</a>。</p>
+<p>这一时期国内外间的沟通甚少，参与人员较少但非常重要。一是将储电从生电中独立出来，二是奠定了全物品的基础。</p>
+<h3 id="022">0.2.2 近代<a class="headerlink" href="#022" title="Permanent link">&para;</a></h3>
+<p>如果说新生代是萌芽，那么近代就是长根。在全物品方面，国外率先使用盒子作为处理主题，并研发出了并行卸货；国内的麋鹿引入了“整流”的概念。不久后慕斯白设计了基于自适应水流堆分的物品流整流（国内流行最早的整流器）。整流的提出使全物品的处理能力普遍提高了约12倍之多！可以说这是近代储电最重要的产物了。</p>
+<p>此外，全物品还有许多重要的转变：大宗的打包和储存分割开来，诞生出许多打包机、大宗仓库和空盒仓库，并引发了盒分类和箱盒展示的发展；不可堆叠处理更加复杂，催生了盒填充度分类、拆包机、粗盒分类等的发展，尤其是大幅优化了盒处理流程；早期分流技术也开始应用，不过效果不那么好；编码技术开始发展，国外率先设计出完整的编码全物品。</p>
+<p>而在非全物品领域，由于生电高速发展，收集也跟着发展，尤其是刷怪类收集；熔炉组、炼药机等生电机器逐渐转为储电机器；自适应技术萌芽，自适应打包、MIS等在近代早期就开始出现，有些用于全物品，有些用于收集或单独使用。</p>
+<p>近代储电时间并不长，因为很快就迎来了技术革命。近代储电末期，重要的1.19版本发布了！</p>
+<h3 id="023">0.2.3 现代<a class="headerlink" href="#023" title="Permanent link">&para;</a></h3>
+<p>1.19漏斗矿车掉落机制的改革使矿车机器成为新的技术突破口，不过一开始还仅仅是一些很生硬、简单的应用，直到完整的矿车分、整流器面世才进入现代储电。矿车技术让原本极限的57.6w/h效率成为常态，甚至在收集领域有了288w/h的常态。很快，另一种技术——自适应技术也快速发展起来，二者一结合，全物品大宗处理几乎完全改变了。矿车和盒子两大技术一结合，大宗处理效果直接再翻一番。Temp、合并器、分盒器、Ideal堆分打包、高速分盒器等高精度机器相机出现，储电体系日益扩增。</p>
+<p>现代储电的技术增长速度非常快，涉及范围广、参与人员多、创新思路繁、中外交流深。一方面，由需求到实现，储电的实用性越来越高，机器实装、运维成本越来越低，很多偏冷门但对生存有极大便利的技术被深入挖掘；另一方面，知识体系积累到一定程度后，创新思维泉涌，逐渐形成“创储”式创新开路、资深研究者完善优化的机器发展格局，机器质量越来越高。</p>
+<p>不过随着储电全的扩大，圈子也出现了不少问题。可谓林子大了什么鸟都有，新人素养参差不齐、圈外大UP胡说八道、抄袭拼接屡见不鲜、吃瓜引战矛盾不断，圈子风气出了问题，很多人都因此退圈，甚至出现了“玩储不混圈，快乐似神仙”之类的箴言。直到现在，问题仍未解决，甚至整个生电乃至于红石圈或多或少都有这样的问题，不过储电圈的问题的严重性是排在最前面几名的。本书初衷之一就是为新人提供一本能不那么依赖圈子学习的资料，笔者也因各种问题退圈，但愿圈子风气能有所好转吧。</p>
+<p>目前高精尖技术还比较青涩，或许新时代就是这些正在开发的新技术的时代。这些胃癌科技将在本书末单独成章介绍。</p>
+<p>纵观储电发展史，可以发现很多规律：技术早期由需求促成，后期由创新思路+需求促成，技术增长已从高速发展转向高质量发展；技术革命从由机制引发到由思路引发，储电思维越发重要；储电同其他技术间的联系时有加深；储电研究所需要的知识越来越细碎、越来越依赖长时间实验和代码研究；很多先前不重要的技术或思路被重新挖掘出价值，储电派系增多且趋于极化。</p>
+<h2 id="03">0.3 储电学习前置<a class="headerlink" href="#03" title="Permanent link">&para;</a></h2>
+<p>储电入门非常简单，弹药深入研究的话必须有扎实的红石、生电和数学基础，甚至很多时候还要翻源码、写程序（<span class="PSTG-deleteline">当然，笔者这种懒狗一般吃现成饭</span>）；同时，也必须熟知各种常见的辅助mod、资源网站等等；最重要的是，培养实验实践能力、创新精神和批判性思维。</p>
+<h3 id="031-">0.3.1 生电-红石基础<a class="headerlink" href="#031-" title="Permanent link">&para;</a></h3>
+<p>有关生电学习并没有现成的、系统的资源，大多依赖平时学习了解特性机制的习惯。建议读者经常在B站找特性机制的科普视频，如果加入了正规生电服或生电/红石交流群，那就最好多看下群友推的各种资料，生电玩家经常分享有意思的东西。同时，个别生电服的审核群提供了学习资料（供未过审人员学习），可以关注下，比如我先前为Peregrine服写的<a href="https://docs.qq.com/doc/DZUFadXZYVWF5SVRS">《MC生电向基础学习资料A版》</a>等。</p>
+<p>至于红石学习，国内没有比<a href="https://techmc.wiki">GTMC</a>更好的学习资料了。这是由国内红石各圈一线研究者共同编写的入门教材，结合了从底层代码抠出来的信息和实战经历，既严谨细致又实用易懂。主教材并不长，耐心读完、理解透彻对学习红石任何分支都有极大的好处，强烈推荐没系统学过红石基础的读者先去把它研究透彻再回来继续读，因为有很多高级红石只是本书会直接使用，例如微时序、计划刻、BED、TEUD等等。</p>
+<p>接下来是一些储电常用的生电/红石机制，市面上的资料没有着重突出储电常用的部分，所以特地列出：</p>
+<h4 id="1">（1）掉落物机制<a class="headerlink" href="#1" title="Permanent link">&para;</a></h4>
+<p>掉落物（Item）是一类很特殊的实体（Entity），碰撞箱大小为2×2×2像素，拥有5滴血（2.5颗心）的生命值。掉落物在生成后一段时间内若不被拾取（包括玩家、生物、漏斗、漏斗矿车等）就会消失（俗称“刷掉了”），这个时间一般是5min，只有一个例外：杀死凋零所掉落的、未被玩家拾取过的下界之星，其刷新时间为10min。</p>
+<p>掉落物的运动机制很复杂，有一篇专门的<a href="">论文</a>可以参考，不过太过于细致了，我们一般是通过经验判断和直接实验，没有必要去深入研究、定量计算。</p>
+<p>掉落物可以合并。合并条件为①.掉落物种类相同 ②.两个掉落物实体包含的掉落物加权数量和≤64 ④.掉落物存在时间足够。例如：玩家刚扔出的两队掉落物由于存在时间不够，不能合并；两堆同种64堆叠掉落物，一堆有32个，一堆有33个，相加为65&gt;64，所以也无法合并。</p>
+<p>掉落物运动是离散的。离散和连续相对，离散也叫分立。由于MC大多运算都在同一线程内，并且没有真正意义上的多线程机制，所以同一时间内最多执行1此运算，而不是多个运算。我们看到的流畅连续的MC只是由于MC每秒运行20次（循环），频率超过了人体能分辨的最高频率，所以认为看到的图像是连续的（所有游戏都是这样，不止MC）。因此，实际上掉落物的运行情况是，每秒移动20次（正常情况下），每次运动都是瞬移到计算好的地方，就和/tp传送一样。并且在同1gt内，也不是所有的掉落物一起运动（没有“同时”这个东西！），而是一个接一个地“tp”。可能有的读者说，用tick freeze和tick step看它们是同时运动的，这是Java的MVC模式（Model-View-Controller）导致的（数据和视图分离，数据更新好了才更新视图）。实际上，大多数运算都是如此，并不同时；其余所有实体也都是离散的，比如TNT、雪球等。</p>
+<p>最后是掉落物和子区块。当一堆掉落物在同1gt穿越子区块边界，它们会按ID顺序决定通过后运算的顺序，也就是说ID靠前的掉落物穿越子区块边界后先运算（先“tp”运动），这个顺序会保持到掉落物消失或再次穿越子区块，许多机器因此具有区块性，比如必须在同一子区块或必须在某个元件处跨越子区块等等。</p>
+<h4 id="2">（2）比较器性质补充<a class="headerlink" href="#2" title="Permanent link">&para;</a></h4>
+<p>红石比较器（Comperetor）可以间隔1个实体方块检测容器储量。当实体方块充能等级&lt;15时，输出与直接检测容器时相同；当实体方块充能等级≥15时，比较器输出15。此特性称为“容器屏蔽”（容器屏蔽有3个，没特殊说明的话就是指这个容器屏蔽。另外还有两个分别是漏斗和漏斗矿车的容器屏蔽）。</p>
+<p>储电经常使用堆肥桶（俗称“粪桶”）+比较器来输出1~6和8的信号，相比于其他红石分支常用的炼药锅，堆肥桶造价更低，且无须担心下雨。拿事物堆肥时，第一次一定会堆叠一层，不过从第二层起，能不能对一层一般是随机的，除了蛋糕——它必定能堆成功，所以在创造研究时一般用蛋糕来填堆肥桶。14洗脑常用蛋糕发出，而其他的常用木桶里放东西生成，有时偶数信号也用啃过的蛋糕。</p>
+<p>比较器输出信号改变需要更新，出了常规元件都接受的NC（Neighbor Chance）之外，比较器还接受比较器更新（Comperetor Chance）。比较器更新由容器发出，当容器的物品栏发生变化（物品增、减、替换等等）时容器会发出二阶毗邻比较器更新。又是比较器输入端信息已经改变，但是并没有收到更新，所以输出并未变化。你可能想到BUD（Block Update Detector），不过它并不包括比较器，这种比较器称为CUD(Comperetor Update Detector)，也叫DUD或TEUD。除了可以检测NC外，更重要的是还能检测比较器更新。下图是3种常见的CUD，其中第2种可以做到8gt工作周期，且延迟无方向性/位置性，第1种由于红石粉的更新机制，检测延迟有方向性/位置性。当然，实际使用时一般视情况自行构建CUD而非直接套用。</p>
+<p><img alt="img预留位" src="" /></p>
+<h4 id="3">（3）<span class="PSTG-red">★ 漏斗</span><a class="headerlink" href="#3" title="Permanent link">&para;</a></h4>
+<p>漏斗(Hopper)是储电中最重要、最玄学的元件，没有之一。有关漏斗的常用知识都必须背熟、理透。首先，漏斗是不完整方块，上方凹槽，下方圆锥，具体缺了多少像素不用知道。其次，漏斗具有方块实体，它的大部分运算在TE阶段完成。漏斗在TE阶段先后执行5个主要操作:</p>
+<ul>
+<li>①.若CD时长≠0，则CD时长-1，若减后CD时长仍不为0，则跳过后续运算。</li>
+<li>②.若漏斗物品栏不为空，且输出端有可接受漏斗输入的容器（如：熔炉、箱子、漏斗矿车等等）则尝试输出1个物品。</li>
+<li>③.若漏斗上方有可接受漏斗输出的容器（如：熔炉、粪桶、漏斗矿车等等），则尝试从容器中吸取1个物品。</li>
+<li>④.若漏斗上方无可接受漏斗输出的容器（1.21+还需上方方块没有nbt标签<span class="PSTG-code">awa=awa</span>）。</li>
+<li>⑤.若②、③、④中的尝试成功至少1次，则增加CD时长。一般加8gt，在以下特殊情况下加7gt以保证漏斗传输间隔为8gt：</li>
+</ul>
+<p><img alt="img预留位" src="" /></p>
+<p>至于怎么尝试，最好是实践理解，因为文本描述不好懂，不过也有严谨文本描述：</p>
+<p>为方便描述，我们对物品栏进行编号。对于箱子、漏斗等玩家可打开物品栏的容器，打开后看到的每一个小格称为1格。每格可以储存1种物品，加权数量上限为64.按照文字书写习惯对格编号，即从左往右、从上往下，每行标完从下一行最左侧起接着编，如下图：</p>
+<p><img alt="img预留位" src="" /></p>
+<ul>
+<li>②的尝试：对输出容器的可接受漏斗输入的物品栏进行编号，设该物品栏为$\Omega$，第$n$格为$\Omega_{n}$，漏斗物品栏为$\Omega '$，第m格为$\Omega_{m}'$。从$\Omega_{1}$开始依次访问每一格($\Omega_{1}→\Omega_{2}→…→\Omega_{n}$)，若$\Omega_{n} = \varnothing$，则依次访问$\Omega_{1}'→\Omega_{2}'→…→\Omega_{m}'$直到$\Omega_{m}'\neq\varnothing$且$\Omega_{n}$和$\Omega_{m}'$内物品种类相同，则取$\Omega_{m}'$内的1个物品放入$\Omega_{n}$并结束尝试（成功）；若无$\Omega_{m}$满足条件，或$\Omega_{n}$中物品加权数量为64，则终止对$\Omega_{n}$的访问，开始访问$\Omega_{n+1}$继续判定。若访问完$\Omega$后未成功，则终止尝试（失败）。</li>
+<li>③的尝试：同理，设上方容器接受漏斗输出的物品栏及每格分别为$\Omega$和$\Omega_{n}$，漏斗物品栏及每格为$\Omega'$和$\Omega_{n}'$。从$\Omega_{1}'$开始依次访问$\Omega'$的每一格，若$\Omega_{m}'\neq\varnothing$，则依次访问$\Omega_{1}→\Omega_{2}→…→\Omega_{n}$直到$\Omega_{n}\neq\varnothing$且$\Omega_{n}$和$\Omega_{m}'$内物品种类相同，则取$\Omega_{n}$中的1个物品放入$\Omega_{m}'$并结束尝试（成功）；若无$\Omega_{n}$满足条件，或$\Omega_{m}'$中物品加权数量为64，则终止对$\Omega_{m}'$的访问，开始访问$\Omega_{m+1}'$继续判定，若访问完$\Omega'$后未成功，则终止尝试（失败）。</li>
+<li>④的尝试：在漏斗上方方块中搜寻，若有掉落物实体的碰撞箱全部或部分在上方方块中，则进行同②、③类似的吸取尝试。</li>
+</ul>
+<p>这些表述很抽象，实际上也没人记，因为但凡玩过几个月MC的基本都知道具体的尝试是怎么样的。</p>
+<p>对于漏斗的工作机制，也可参考<a href="">Fanzhitianyu</a>的<a href="">源码分析</a>、<a href="">MC Wiki</a>等，以及下方的图解。</p>
+<p><img alt="img预留位" src="" /></p>
+<p>漏斗分为主动漏斗和被动漏斗。主动漏斗指会“漏”的漏斗，而被动漏斗指只“吸”的漏斗。主动漏斗上下串联就形成了双倍速漏斗，如下图，中间的漏斗会主动吸取上面的漏斗，上面的漏斗也会主动往下漏，所以是双倍速的。漏斗被充能时，不会进行运算②~⑤。</p>
+<p><span class="PSTG-green">漏斗哈希</span>是一个抽象的知识点。吸纳有一个区块C，玩家先后在区块C中放下漏斗$H_{1}$和$H_{2}$（放置两漏斗之间未卸载区块C），则在区块C被卸载前，每gt的TE阶段先执行漏斗$H_{1}$的运算，再执行$H_{2}$的运算。可当区块C被重载后，$H_{1}$、$H_{2}$的运算会按照新的顺序进行，该顺序在区块C被加载时由哈希算法（可以简单理解伪随机）确定，即在区块C被卸载前，$H_{1}$、$H_{2}$的运算顺序都是该既定顺序，直到下一次区块C重载，才可能改变顺序。上述特性被称为<span class="PSTG-green">漏斗哈希</span>。</p>
+<p><img alt="img预留位" src="" /></p>
+<p>漏斗哈希对很多机器来说是致命的。如上图，箱子里的物品可能8gt就传入木桶，也可能14gt才传过去，这是非常容易导致机器暴毙的特性，平时搓机器一定要关注这个抽象玩意，例如下图两种漏斗链，在精密时序机器中一定要用右边这种，不然可能重载后就死了。</p>
+<p><img alt="img预留位" src="" /></p>
+<p>还有个不重要的小细节：你看经常看到有人在漏斗上盖粪桶，这是漏斗的容器屏蔽，盖上过后漏斗的机制会发生一些改变，这个稍后会讲，总之是减卡的，很多容器都有这个效果，不过粪桶效果最好而已。</p>
+<p>接下来让我们来讨论一个由来已久的问题：<span class="PSTG-red">锁漏斗吗?</span></p>
+<p>相信绝大多数读者第一反应就是：锁！锁了就能减卡，减卡就是优化。这里不得不提一下MC的逆天代码了，原版中大多数方块依赖PP和NC进行更新，但是漏斗这玩意只要它没锁就会一直循环运算而不是依赖NC、PP，所以占的运算量就非常大。前面提到粪桶减卡就是针对这一点进行优化，盖上粪桶后漏斗的工作就变成更新一下动一下了，即上方粪桶发出NC更新的时候它才会运算一下，而粪桶等容器都有这个效果，它减卡最多的原因是漏斗本身运算量最小（粪桶物品栏只有1格）。</p>
+<p>或许是受这个机制的启发，大名鼎鼎的mod——锂（Lithium）就把漏斗的运算也变成了响应式的。锂对MC的优化作用巨大，现在几乎所有生电服都安装了锂mod，所以漏斗的卡顿问题似乎也没那么重要了。以数据说话。请看下图对比，现在漏斗已经不那么吃计算了。至于客户端卡顿，那是漏斗的方块实体渲染导致的延迟问题，锁了也没用。由此诞生一个成语：“锂”所当然。</p>
+<p><img alt="img预留位" src="" /></p>
+<p>然后来了解下机器种锁漏斗的3种常见方案：</p>
+<ul>
+<li>①.全解锁：机器工作时解锁全部漏斗，机器关机时整体上锁。</li>
+<li>②.自解锁：机器工作时，仅解锁需要运行的漏斗，工作完成后整体上锁。</li>
+<li>③.动态解锁：精确控制到每个漏斗，仅该漏斗工作时解锁漏斗，该漏斗工作完马上上锁。</li>
+</ul>
+<p>乍一看，好像动态解锁的卡顿是最低的，不过请看下图实验数据。动态解锁忽略了一个致命的点——漏斗解锁、上锁时的卡顿非常高！如此频繁地解锁、上锁会造成很高的卡顿，再者是有理情况下锁漏斗的减卡效果很微小，所以总体卡顿会很高。</p>
+<p><img alt="img预留位" src="" /></p>
+<p>最后是锁漏斗的代价。请看下图对比，这些是影响较小的锁漏斗，很多本可以非常简洁、非常小巧的机器加上一大坨锁线后就冗杂不堪了。当然，有一部分是因为布线者水平不高，但更多的是因为很多除了锁之外最优的架构是锁不了漏斗的，只能把它肚子搞大才有空间布锁漏斗的线。另外，有些时候给一个只有3、4个漏斗的极小的机器，加上几乎等体积的锁线，完全破话了机器本身的美感。</p>
+<p><img alt="img预留位" src="" /></p>
+<p>还有些影响非常大的锁漏斗，当然这是指设计过程中，我们不太可能时刻保持清醒，经常容易布错线（少/多布、串线、逻辑错误等等），很容易搞不好锁漏斗的线，而且有时锁的逻辑很复杂，布线难度很高，测试的时候不备份的话，是有概率从头重做的。不可否认的是这是能力问题，但显示是这几乎难以避免。</p>
+<p>现在，你还认为锁漏斗一定好吗？</p>
+<p>储电，甚至生电圈中对锁漏斗的争议都很大，很多人根本就是凭感觉说话，不做实验，拿不出数据；还有一部分过于极端，只会0和1.下面是一些常见的观念:</p>
+<ul>
+<li>不管布线有多难，锁了就是好线，锁了才舒服。</li>
+<li>能锁就锁，不好锁的不锁问题也不大。</li>
+<li>锂所当然。</li>
+</ul>
+<p>请读者务必仔细思考这个问题，这对你的储电布线风格和设计思维音响会非常大。我会再列举一些有名的图用来参考。</p>
+<p><img alt="img预留位" src="" /></p>
+<h4 id="4">（4）投掷器、发射器<a class="headerlink" href="#4" title="Permanent link">&para;</a></h4>
+<p>投掷器（Dropper）在储电中的地位仅次于漏斗。它是一种计划刻元件，可被QC激活。被激活后添加4gt后的计划刻事件，如果投掷器输出口对的方块是可接受投掷器输入的容器，则尝试随机输入1个物品，否则随机选一个投掷器内的物品一随机动量投出（飞向各方的概率不同，北方概率高）。至于这个尝试，还是实践吧，文字描述和漏斗那部分的尝试①②相似，相当复杂。还有一点要说明的是，投掷器发出的PP更新是其被激活/接触充能的时候发出的。</p>
+<p>发射器相较于投掷器，会使用一些特殊的物品，如下图：</p>
+<p><img alt="img预留位" src="" /></p>
+<h4 id="5">（5）漏斗矿车<a class="headerlink" href="#5" title="Permanent link">&para;</a></h4>
+<p>漏斗矿车（Hopper_minecart）常称为“车”（cart），也非常重要。这里只介绍矿车的容器特性和最简单的运动性质（详细的运动分析见第1章）。漏斗矿车是一种特殊的实体，有5格物品栏，常规情况下每gt都会尝试吸取，吸取机制和漏斗几乎相同，区别是它吸掉落物的范围大了些，xyz范围都更大，其中y轴超高导致漏斗矿车可以吸取其中心上方2格的掉落物。所以，cart的吸取范围如下图所示：</p>
+<p><img alt="img预留位" src="" /></p>
+<p>有一点需要强调，漏斗矿车只会吸，而不会主动输出。像上图那种，输出是漏斗吸的，不是cart自己往下漏的。</p>
+<p>接下来是运动性质，这需要和铁轨的特性一起说。先来看4种铁轨的特性：</p>
+<ul>
+<li>（普通）铁轨：无法为cart提供动力，仅可承载矿车运动（有阻力）和转向，下图中两个矿车在动是因为碰撞箱重叠导致实体间产生挤压，并非由铁轨加速。<img alt="img预留位" src="" /></li>
+<li>充能铁轨：亦称为“动力铁轨”，可以给cart加速，前提条件是被激活。与直接被信号源激活的充能铁轨相连的8格充能铁轨会被激活。</li>
+<li>激活铁轨：无法为cart提供动力，有摩擦，其激活铁轨同充能铁轨相同。当漏斗矿车经过激活的激活铁轨后上锁，此时cart不能吸取任何东西（因此卡顿很小）：当上锁的cart经过未上锁的激活铁轨后解锁。</li>
+<li>探测铁轨：当cart经过探测铁轨时，探测铁轨激活上方及周围红石元件并强充能附着方块。若探测铁轨接比较器输入端，则由比较器检测cart储量输出对应模电信号。</li>
+</ul>
+<p>4种铁轨都有直轨和斜轨之分，cart在斜轨上会受向下的重力，分解一下就有沿斜面向下的加速度；（普通）铁轨还有弯轨，直/斜轨和弯轨都可以让矿车转弯（如下图），不过有所区别：弯轨转弯时，cart碰撞箱中心会跟着弯轨纹路走，所以cart有一部分碰撞箱会陷入红色玻璃处，如果在这儿放实体方块的话就会造成挤压，很多矿车机器就死于此，这个挤压看运气，有时候没多大力，有时候能直接给矿车截停，但总归是要避免的；而直轨转弯则不然，矿车是直接瞬移到新帖柜上，不会出现碰撞箱偏移的问题。不过直轨转弯是有方向性的，cart优先往东方和南方走，称为<span class="PSTG-green">东南定理</span>，若想人为控制的话还得换斜轨。</p>
+<p><img alt="img预留位" src="" /></p>
+<p>当cart下方3格内有铁轨，且中间没有可阻碍的方块，就会瞬移到铁轨上。常用的不阻碍方块是灵魂沙，当然也可以用泥巴。基于这个特性可制出传统的烧车，在1.19及以后，cart掉落本体（1.19以前掉落漏斗+矿车），如下图，cart在灵魂沙上瞬移到下方铁轨上，由于头颅阻碍，cart有一部分会卡进炼药锅里，被里面的岩浆烧掉。这里用来档矿车的方块也常用紫水晶等等。</p>
+<p><img alt="img预留位" src="" /></p>
+<p>然后是掉落物的落点，用头颅或紫水晶卡位的话，cart本体生成在炼药锅底，而cart内装的物品会生成在铁轨上，水平方向动量守恒。这时在炼药锅下放个漏斗就能吸漏斗矿车了，在后面的章节还要结合矿车动量分析。如果档矿车用的是竖直打开的活板门，那cart也会生成在铁轨上，和物品栏里的物品生成在同一各从而无法分离。还有一类很特殊的烧车，位置卡得很死，能完全分离二者。如下图，cart会被生成在活板门上，掉落物在铁轨上，这样就不需要漏斗来赶着吸cart了（普通烧车吸得慢的话矿车可能被岩浆烧死或者从炼药锅中被挤出来。）</p>
+<p><img alt="img预留位" src="" /></p>
+<p>烧车的变种很多，下面的都是。第一种是地狱用的，因为用不了水。掉落物会在蜘蛛网处生成，注意，这里不能用细雪，因为矿车被烧的时候会把细雪给烧掉，而蜘蛛网不会（为了防止掉落物乱飞的，可有可无）。</p>
+<p><img alt="img预留位" src="" /></p>
+<h4 id="6">（6）其他容器<a class="headerlink" href="#6" title="Permanent link">&para;</a></h4>
+<ul>
+<li>箱子:不完整可含水方块，具有方块实体（因此客户端渲染比木桶卡，但是服务端没有影响）。1.17前打开箱子会发出一节毗邻NC和PP更新，1.17后没有更新。箱子上方有实体方块或蹲着的猫时无法被打开，同时也无法被比较器检测出储量。</li>
+<li>木桶：实体方块，丑</li>
+<li>潜影盒：好长时间没用过这么正式的名字了，基本都叫它“盒子”。可充能（未打开时）方块，被活塞推动会变成掉落物。盒子里不能放盒子（禁止套娃），有许多种颜色。其打开时凸出来那一面称为盒子的顶面，顶面所对方块得满足一定要求才能打开盒子，常见的归纳如下图：</li>
+</ul>
+<p><img alt="img预留位" src="" /></p>
+<h3 id="032">0.3.2 其它红石分支<a class="headerlink" href="#032" title="Permanent link">&para;</a></h3>
+<p>常说的六大红石分支是（排名不分先后）生电、储电、数电、模电、械电、绿萌，下面给出后4种的简单介绍和需要补充的知识。</p>
+<h4 id="1_1">（1）数电<a class="headerlink" href="#1_1" title="Permanent link">&para;</a></h4>
+<p>用数字信号完成对数字量进行算术运算和逻辑运算的电路称为数字电路，简称数字电路，简单来说就是研究二进制的。该学科在现实中也存在并且极为重要，是计算机的核心。在本书后期会介绍编码技术，届时会用到一些数电和模电的知识，所有有必要提前普及一下。</p>
+<p>首先是<span class="PSTG-red">二进制</span>。二进制是一种仅使用“0”和“1”两个符号来表示所有数值的数制系统。为了理解一个二进制数代表的具体数值，关键在于掌握其“位权”体系。每个数位都有其特定的权重，该权重是以基数2为底的幂次方，幂的次数由该数位的位置决定（通常从右向左，从0开始计数）。例如，二进制数1101中，最右侧的“1”位于第0位，其位权为2⁰=1；向左一位的“0”位于第1位，位权为2¹ = 2；再向左的“1”位于第2位，位权为2² = 4；最左侧的“1”位于第3位，位权为2³ = 8。该二进制数的实际值即为各位数值乘以其位权后相加：(1×8)+(1×4)+(0×2)+(1×1) = 13。</p>
+<p>将二进制转换为十进制遵循上述“按权展开，求和”的通用方法。对于包含小数的二进制数，其小数点后第m位的位权为2⁻ᵐ（即1除以2的m次方）。例如，二进制数101.11的转换过程为：(1×4)+(0×2)+(1×1)+(1×0.5)+(1×0.25) = 5.75。</p>
+<p>反之，将十进制数转换为二进制，则需要分别处理整数与小数部分。对于整数部分，采用“除2取余法”：将十进制整数反复除以2，并依次记录下每次的余数（0或1），直至商为0。最后，将所有余数按从最后一次计算到第一次计算的顺序（即逆序）排列，即得到二进制整数部分。以十进制数13为例，其转换步骤为：</p>
+<p>13 ÷ 2 = 6 ... 余 <strong>1</strong></p>
+<p>6 ÷ 2 = 3 ... 余 <strong>0</strong></p>
+<p>3 ÷ 2 = 1 ... 余 <strong>1</strong></p>
+<p>1 ÷ 2 = 0 ... 余 <strong>1</strong></p>
+<p>逆序读取余数，得到二进制数1101。</p>
+<p>对于小数部分，则采用“乘2取整法”：将十进制小数部分反复乘以2，每次记录乘积的整数部分（0或1），然后将这些整数部分按计算顺序（即正序）排列，直到小数部分归零或达到所需精度。以十进制小数0.375为例：</p>
+<p>0.375 × 2 = 0.75 ... 整数部分 <strong>0</strong></p>
+<p>0.75 × 2 = 1.5 ... 整数部分 <strong>1</strong></p>
+<p>（取走整数1后） 0.5 × 2 = 1.0 ... 整数部分 <strong>1</strong></p>
+<p>顺序读取整数部分，得到二进制小数0.011。因此，十进制数13.375转换为二进制后即为1101.011。</p>
+<p>在二进制的基础上，十六进制作为一种高效的辅助表示法被广泛使用。它采用基数为16的计数系统，使用数字0-9和字母A-F（代表10-15）共16个符号。由于16是2的四次方（2⁴=16），一位十六进制数恰好等价于四位二进制数。这种一一对应的关系使得二进制与十六进制之间的转换变得非常直接：将二进制数从低位到高位每四位分为一组（不足时补零），每组直接替换为其对应的十六进制符号即可，反之亦然。例如，二进制数 <code>1101 1010.1011</code> 可以便捷地表示为 <code>DA.B</code>。</p>
+<p>二进制数据的处理依赖于逻辑门这一基本电路单元。它们执行基础的布尔逻辑运算：</p>
+<ul>
+<li><strong>非门 (NOT Gate)</strong>: 执行逻辑“反相”运算，输出与输入逻辑相反。即：输入0，输出1；输入1，输出0。</li>
+<li><strong>与门 (AND Gate)</strong>: 执行逻辑“与”运算，仅当所有输入均为1时，输出才为1。即：1 ∧ 1 = 1；1 ∧ 0 = 0；0 ∧ 1 = 0；0 ∧ 0 = 0。</li>
+<li><strong>或门 (OR Gate)</strong>: 执行逻辑“或”运算，只要任一输入为1，输出即为1。即：1 ∨ 1 = 1；1 ∨ 0 = 1；0 ∨ 1 = 1；0 ∨ 0 = 0。</li>
+<li><strong>异或门 (XOR Gate)</strong>: 执行逻辑“异或”运算，当两个输入值不同时，输出为1。即：1 ⊕ 1 = 0；1 ⊕ 0 = 1；0 ⊕ 1 = 1；0 ⊕ 0 = 0。</li>
+</ul>
+<p>由逻辑门构成的组合逻辑电路，其输出仅取决于当前的输入组合。然而，若要构建具有“记忆”功能、能够存储信息的电路，则需要时序逻辑元件。</p>
+<p>最基本的存储单元是<strong>锁存器</strong>，它是一种电平敏感器件。当控制信号（如使能端）处于有效电平期间，其输出状态会跟随输入变化；当控制信号失效后，其状态则被“锁存”保持。锁存器的状态可以在控制信号持续有效期间被反复改变，这在实际同步系统中可能导致时序问题。</p>
+<p>为了解决这一问题，<strong>触发器</strong>被设计出来。触发器的核心改进在于引入了<strong>边沿触发</strong>机制。边沿，特指时钟信号从一个电平跳变到另一个电平的瞬间，例如从低电平（0）跳变到高电平（1）的上升沿，或从高电平（1）跳变到低电平（0）的下降沿，亦或是双边沿（信号改变的瞬间，无论是低电平到高电平还是高电平到低电平）。这个跳变瞬间非常短暂。以最典型的<strong>D触发器</strong>为例，它只在一个特定的时钟边沿（例如上升沿）到来的<strong>那一瞬间</strong>，采样并锁存其数据输入端D的值。在边沿到来之前以及边沿过去之后的任何时刻，无论D端信号如何变化，触发器的输出Q都将保持之前锁存的值不变。这就像在时钟边沿“拍了一张快照”一样。这种边沿触发方式确保了所有触发器能够在一个系统中共用同一个时钟信号，并在完全相同的精确时刻同步更新状态，从而构建出稳定可靠的同步时序电路。</p>
+<p>将N个结构相同的触发器并联，并让它们共享同一个时钟信号和复位/置位控制线，就构成了一个<strong>N位寄存器</strong>。寄存器能够在每个时钟有效边沿到来时，同步地存入一组N位的二进制数据，并在下一个时钟边沿到来之前稳定地保持这组数据，从而作为数字系统中数据暂存、缓冲和传输的核心组件。由寄存器、触发器和组合逻辑电路共同构成的时序系统，是现代数字信息处理的基石。</p>
+<p>数电要学的内容基本到此为止，也可以适当拓展一下，比如逻辑图，半/全加器等等，本书用不到，不再深入。</p>
+<h4 id="2_1">（2）模电<a class="headerlink" href="#2_1" title="Permanent link">&para;</a></h4>
+<p>模拟电路（Analog Circuit）是处理连续变化模拟信号的电子电路，主要功能包括信号放大、滤波、运算及转换，由放大电路、运算电路、振荡电路、调制解调电路及电源模块等基础模块构成。MC的模电和现实中的模电有很多不同，储电要学的模电部分是对其它进制的研究，例如16进制、10进制8进制、12进制等等。</p>
+<p>数电中有信号就是1，没信号就是0，称为数字电路；而模电则需要考虑信号的强度大小，称为模电信号。例如下图中，该红石粉在数电中代表1，在模电中就代表14.</p>
+<p><img alt="img预留位" src="" /></p>
+<p>模电一般按信号强度分为强模（&gt;15）和弱模(1-15)。原版生存目前已经无法使用强模，在1.21之前，两本同种诅咒类附魔书可以在砂轮中处理后堆叠起来（切记按Shift+左键取出，否则会分开），多弄一些填到容器中再用比较器检测，就可以输出强模信号（如下图）。现在仍可以使用堆叠盒来生成强模，但是终归不是原版。</p>
+<p>由于红石粉的充能等级最高只有15，所以无法用红石粉来传递、显示正确的强模信号。展示可以用Tweakermore的信息展示，传递则只能用充能方块和比较器链。也就是说，强模仅可以在平面内传递，纵传的话必须转换成其他形式的信号才行。</p>
+<p><img alt="img预留位" src="" /></p>
+<p><img alt="img预留位" src="" /></p>
+<p>如上图，两个比较器首尾相连可以构成弱模寄存器，4个可以构成强模寄存器。寄存器可以保存模电信号，如果要清空它，只需在比较器侧面接一个较大信号，或者用活塞把实体方块移走。再看第二张图，这是信号衰减时钟，把复位的线去掉就成了长脉冲保持器，它可以把一个脉冲信号（4gt及以上）多保持一段时间（数电信号），体积很小故很常用，时钟每循环一次，寄存器里的信号就会-1，知道清空，这样就可以将脉冲信号保持很久的时间。这个结构用得非常多，不过一般是三维布线，平面太占位置了也不够灵活，如下图。它还可以多次嵌套，每套一层，时间就会增长约14次，满足指数函数爆炸式增长。</p>
+<p><img alt="img预留位" src="" /></p>
+<p>数电和模电合称“数模”，前几年很火的红石计算机主要就是靠数模。MC是图灵完备的，理论上是可以造出计算机的，实际上这玩意已经屡见不鲜了。有关数模的其它内容会在后面用到的时候再讲，因为有些不需要我们了解它们在数模领域的身份，会用就行（毕竟笔者不会数模）。</p>
+<h4 id="3_1">（3）械电<a class="headerlink" href="#3_1" title="Permanent link">&para;</a></h4>
+<p>这一块储电交融得就极少了，械电（机械电路）主要研究活塞运动和瞬时2026年1月2日14:08:27，分为高速械电和实体械电，典型机器有树场、刷石机、活塞门等。械电基本算是code based，大多数研究都基于底层代码，也是一门很复杂的技术，这里仅做了解即可，械电中差不多只有BED可能会在储电中用到，这个在GTMC教材中已经讲过了。</p>
+<h4 id="4_1">（4）绿萌<a class="headerlink" href="#4_1" title="Permanent link">&para;</a></h4>
+<p>萌？猛！这个词可能很多人都没听说过，但是你应该听过它所研究的机器：世界吞噬者、三向轰炸机、地狱吞噬者……笔者对绿萌的印象就是TNT爆破、飞行器、绿蜜棒子，和储电毫无关联，总之了解即可。</p>
+<h3 id="033-mod">0.3.3 辅助mod<a class="headerlink" href="#033-mod" title="Permanent link">&para;</a></h3>
+<p>现在这个大环境下，应该没有很抵触使用辅助mod的技术玩家了吧？在纯原版搞技术几乎是不可能的，我们都追求设计工具多样化，辅助mod就是其中之一。储电辅助mod核心是Fabric+carpet，具体名单如下图所示。由于数量过多，此处只能列举一些现成的资料，以及一些常见的问题和冷门mod的介绍。</p>
+<p><img alt="img预留位" src="" /></p>
+<ul>
+<li>（1）投影</li>
+</ul>
+<p>投影（Litematica）是基础辅助mod之一，其重要性相比不用多说，具体可以参见<a href="">大叔的介绍视频</a>。</p>
+<p>可能有读者在服务器中遇到过这些问题：存投影存不了NBT、粘投影粘不了NBT，这些问题解决了好几年，现在终于是有比较好的解决方案了。1.21及以上需要在客户端和服务端安装相同版本的servux，并在投影配置界面中开启<span class="PSTG-code">pasteUsingServux:true</span>；1.21-时，存NBT需要服务端装PCA、客户端装Tweakermore并开启<span class="PSTG-code">serverDataSyncer:true</span>，粘投影需要双端均安装Litematica_server_paster。还有一点要注意，无论版本，把Masa Gadget的数据同步关了！用这玩意存慢得要死，存的东西数据里那个太大了还会被踢出服务器；而且开了Masa Gadget会把Tweakermore的功能顶掉，所以一定要关！还有就是1.21-要用carpet的<span class="PSTG-code">/carpet fillUpdate false</span>才不会粘出问题。</p>
+<p>再者是投影版本的问题，在不同MC版本中存的投影版本不同，1.21后投影版本是7，1.21前大多是6，过低版本还有5/4的，高版本可以向下兼容低版本，但是低版本加载高版本投影可能会出错（缺少NBT等等），解决方案是在高版本中导出投影时选择低版本投影，详情参见<a href="">大叔视频</a></p>
+<ul>
+<li>（2）WE</li>
+</ul>
+<p>WorldEdit(创世神，简称WE)是非常重要的设计工具，红石和建筑都非常常用，其主要功能见<a href="">介绍视频</a></p>
+<p>WE操作总是会出一些莫名其妙的错误，想什么地毯变掉落物、铁轨朝向出错等等，可使用<span class="PSTG-code">//perf</span>，把“临近”关了，这样出错概率会低一些（不过还是有概率出错，mod本身有问题）。这个“临近”貌似是会自动重置的，所以每次进服后都要重新手动打开。</p>
+<p>此处省略一万字，下辈子写</p>
+<h2 id="04">0.4 储电的系统性处理思维<a class="headerlink" href="#04" title="Permanent link">&para;</a></h2>
+<p>本小节是理论总结，比较抽象，建议读者后期再来读。</p>
+<h3 id="041">0.4.1 转移性<a class="headerlink" href="#041" title="Permanent link">&para;</a></h3>
+<p>所有的储电机器都包括物品的转移，这是储电机器的<span class="PSTG-red">根本特征</span>，笔者称之为<span class="PSTG-green">转移性</span>。它有如下5个方面的体现:</p>
+<ul>
+<li>（1）掉落物位置的转移 例如:水道、水流堆分……</li>
+<li>（2）物品转移至容器中 例如：打包机、cart收集……</li>
+<li>（3）物品在容器间转移 例如：无实体物流、分盒器、合并器……</li>
+<li>（4）物品从容器中转移至外部 例如：拆包机、烧/扎包水道……</li>
+<li>（5）物品跟随容器转移 例如：所有矿车类机器……</li>
+</ul>
+<p>从转移性中，读者能发现出什么储电哲理嘛awa？</p>
+<h3 id="042">0.4.2 常用操作<a class="headerlink" href="#042" title="Permanent link">&para;</a></h3>
+<p>大多数储电机器执行的操作都由许多常用操作组成，把握这些操作就可以应对大多数设计的思维问题，不过在创新时易被惯性思维限制，慎学。</p>
+<ul>
+<li>（1）取样:对于纯净的盒子/物品堆/车，只需要取1个物品来操作（分类、编码等等）就可以确定整体的id信息，这个取出的物品称为<span class="PSTG-green">key</span></li>
+<li>（2）填充：将盒/车填充为需要的形式以便后续处理。</li>
+<li>（3）抑制：达到某条件时抑制某元件工作，使整体正常运行。</li>
+<li>（4）轮询：此处指的是思维而不是元件名称，亦称“遍历”，即依次访问每一个符合条件的单元，找到最近的单元后进行操作并终止遍历，或者对每个访问的单元都进行操作。</li>
+<li>（5）寄存：主要指信号的寄存，也包括触发器。</li>
+<li>（6）异步：讲一个事件拆分成多个不同事件和操作。</li>
+<li>（7）检测：检测某事物是否达到预定状态再进行对应操作。</li>
+<li>（8）逻辑判断：与、或、非……</li>
+</ul>
+<h3 id="043-ui">0.4.3 UI<a class="headerlink" href="#043-ui" title="Permanent link">&para;</a></h3>
+<p><span class="PSTG-green">UI（User Interface）</span>即用户接口，指机器中需要和玩家进行交互操作的部分，例如操作面板、全物品单片中的玩家过道等等。部分机器没有UI，他们只涉及与机器、线路和物流的交互而不与玩家直接交换：很多机器都由UI，那UI必定是此类机器设计的重点考虑部分。<span class="PSTG-red">UI对于操作体验的影响非常大</span>，同一功能的机器，UI不同，操作体验可能完全不同。</p>
+<p>好的UI应当具有便捷和美观这两大特点。所谓便捷，就是指玩家能方便、快捷地操作机器，或者从机器中获取信息/物品，这个需要具体情况具体分析，总之就是怎么用着舒服怎么来。二一个是美观，并不要求我们有建筑功底，但至少要和谐，契合周围环境和机器本身的特点并且看上去不刺眼。当然如果会建筑那就更好了，哪怕不会，平时多看多学其他人的机器装饰也会收获许多，这就考验阅历了。</p>
+<p>不过，UI并不是越舒服越好，因为越好的UI往往布线越难，顶级UI甚至可能无布线可能性。例如混储片，这玩意不上编码的话，要么UI逆天，要么布线逆天，至今都没有两全其美的作品（很多人都不喜欢混储就因为这个）。所以设计的时候必须考虑好布线与UI的兼容性，大多数情况下得进行取舍。由于UI和布线总是相冲突，很多有强迫症的玩家在设计的时候总是绝望的（例如笔者），怎么弄都不完美，必定要舍弃一方，此时就很容易放弃了（“反正搓出来也是一坨，还不如不搓”），这个无论怎么开导都没用，只能自己调整心态。不过逆天玩意见多了就会好很多了，因为总有比你的设计更逆天的（确信）。</p>
+<p>即便如此，我们仍建议大家设计机器时优先考虑UI，因为它的直观影响太大了。总之，如何取舍由你决定，若能兼顾那就再好不过了（虽然几乎不太可能）。</p>
+<h3 id="044">0.4.4 设计权重<a class="headerlink" href="#044" title="Permanent link">&para;</a></h3>
+<p>“权重”在设计时指各设计要素的重要性优先级，除了上面说的UI外，设计要素还包括：耗材种类及数量、速度、卡顿、性价比、填充方块数量和填充难度、功能多样性等等，这是一个非常灵活的设计问题，往往取决于用户需求、机器本身特点和作者布线风格，并且会影响创作者布线风格的形成。</p>
+<p>例如：一个小型的非生电服需要一台全物品，没有特殊要求的话，那么设计权重理应就是好装、性价比、运维方便等优先，速度、卡顿之类的都往后稍。设计者要明确自己的机器是给谁用的，怎么做能让ta用得舒服，或者让自己感觉舒服，久之便内化为自己的布线习惯和风格。</p>
+<h2 id="05">0.5 储电圈<a class="headerlink" href="#05" title="Permanent link">&para;</a></h2>
+<p>“圈子”一词泛指具有相同或相近兴趣爱好或职业的人构成的社区。本小节重点关注国内储电圈，详细的历史就不讲了，这里重点讨论一些影响重大的事件、风气问题和储圈现状。</p>
+<h3 id="051">0.5.1 主要圈子<a class="headerlink" href="#051" title="Permanent link">&para;</a></h3>
+<p>国内储电圈大多依赖QQ群、KOOK档案馆和B站，其中QQ群是最主要的交流平台，在这里你能第一时间了解到储圈大事、询问任何正常人能问出来的储电问题，同时也能最直接地感受到储圈病态的一面。下面列举出了一些主要的QQ群：</p>
+<ul>
+<li><span class="PSTG-red">必加</span>wreg’s:531434227(最活跃的地方)</li>
+<li>OpenST:440138916</li>
+<li>萌新群:201994464</li>
+<li>Daisy pig’s:620590117（老的大储电群不过不活跃）</li>
+<li>CherryBlolin's:1087507489</li>
+<li>麋鹿's:806288455</li>
+<li>tuzier's:932204931</li>
+</ul>
+<p>KOOK也是即时交流软件，仿照的是国外的Discord，目前不知道具体出了什么问题，感觉半死不活的，经常吞文件，所以很多人都转战其他平台了，还有点用的档案馆（机器汇总）有：</p>
+<ul>
+<li><span class="PSTG-red">必加</span>77的个人档案馆：https://kook.top/Xep9cZ</li>
+<li>wreg的国内储电档案馆（停更）：https://kook.top/I3nOGS</li>
+<li>技术生存档案馆（基本死了而且很老）：https://kook.top/Jy4Gf4</li>
+<li>E佬的个人档案馆:https://kook.top/6IhfEC</li>
+</ul>
+<p>B站就不必多说了，很大一部分大佬的作品和思路都会在B站上发布，多看多积累是一条很有效的学习途径，不过也需要仔细辨别，因为上面的物品没人审核价值，不能盲目学习，B站劣质作品还是很多的。</p>
+<p>国外的圈子主要就是Discord（一款即时交流软件），需要科学上网（不会的就别看这儿了，先好好读书）。一些主流频道如下：</p>
+<ul>
+<li><span class="PSTG-red">必加</span>Storage Tech (ST，老国际储电档案馆)：https://discord.gg/JufJ6uf</li>
+<li>Bedrock Storage Tech(BE储电档案馆): https://discord.gg/RaEWYeU</li>
+<li>https://discord.gg/8nGNTewveC </li>
+</ul>
+<p>此外，还可以在Youtube（国际最大的视频平台，相当于国内的B站，人送外号“油管”）上看到国内外大佬的作品，不过也需要科学上网:www.youtube.com</p>
+<p>国内还有一个综合性储电服务器——RSTL，全称Redstone &amp; Storage Tech Lab，是一个专业高水平红石储电社区服，力求成为国内储电第一服务器，目前汇聚了国内几乎所有的储电顶尖玩家，近乎可以覆盖储电领域的方方面面，有任何储电相关问题都可以在社区服提问。RSTL面向国内全体MC红石玩家，拥有多个子服，分别为Lab，Library，Test，每一个子服都具有着不同的作用。大家都知道，STL的解散非常惋惜，是我们红石界的遗憾，但是我们不能就此放弃，RSTL的诞生正是为了继承STL的初心，促进国内红石技术发展。详情见:https://www.bilibili.com/opus/1003685306809974789?spm_id_from=333.1296.0.0</p>
+<h3 id="052">0.5.2 储圈风气问题<a class="headerlink" href="#052" title="Permanent link">&para;</a></h3>
+<ul>
+<li>(1)抄袭、二创、缝合</li>
+</ul>
+<p>早期储电发展几乎全靠创新，不创新的话玩着没意思，因为可玩的东西太少了；但现在东西多了，各种技术都有一定程度的发展了，非原创者就开始冒皮皮了。抄袭是指把别人的作品说成是自己的，二创是指在别人的机器/思路的基础上进行修改，缝合指大量使用了非自己原创的部分来拼接机器。</p>
+<p>抄袭者是最可耻的。抄袭违背了“无不”网络行为底线要求之一的“在网络信息空间中，要像对待现实世界中的商品一样，以合法合规的方式获取所需的信息，抵制侵犯知识产权的不道德行为。”严重请饭了原创设计者的知识产权，还敢声称“我为原创”，是极其不要脸的行为。这里就不点名了，要了解的话随便找个储圈老吃家去打听，很多事情是人尽皆知的。</p>
+<p>而二创者就分情况讨论了。圈内很多创新作品的原型机只是概念验证用，思路、布线等都不成熟。如果有人优化出了很好的作品，并且和原作者协商同意以二创形式发布（明确说明思路来自XXX或者原型机为XXX所设计），那这是完全没有问题的，其初衷是好的，原作者也同意了，也创作出了更好的作品，是值得鼓励的行为；但是大多数二创者就是“有我改的部分，所以作者就是我，这是我原创的机器”。这个就同抄袭相近了，尤其是未和原作者协商并征得同意时，也属于往自己脸上贴金。</p>
+<p>至于缝合，不同的人有不同的看法。一些人坚持原创之上，希望他人作品尽可能多的是自己设计的部分；还有的人认为缝合是为了追求完美，执意追求全原创并没有什么意义。不过这一切的基础都是：显式声明缝合、发布时必须标明原作者、不在未征得原作者同意的情况下发布其未公布的作品，这3点满足了的话就看你怎么想的了。</p>
+<p>笔者个人的观点是比较中立的：尽量原创，在性能差异不大的情况下追求原创，差异过大或者自己没能力完成的元件可以适当选择他人优质作品来追求高性能。初学者就不要缝了，没意义，等到自己有较强的原创设计能力再说，原创者的缝合能力一定比非原创者好。B站上一堆缝合全物品，好用的还是原创者缝的，那些没有一个元件是自己的全物品纯属浪费B站服务器和网络资源。</p>
+<h4 id="2_2">（2）编码神化论<a class="headerlink" href="#2_2" title="Permanent link">&para;</a></h4>
+<p>自2022年国内储电大佬在Yi_Breeze在B站上发布编全的视频后，编码这玩意开始被大众知晓。本来是好的，但谁也没想到接下来发生的事情。2023年生电强服云镇工艺联合知名MCUP肥啾发布了云镇设计的二进制编码全物品，视频做得非常好，加上肥啾几十万粉丝的基础，让该视频迅速走红。最直观的现象就是，同时期平均每3个如可能储电的新人就有1个事奔着学编码来的，各大储电群里全是问编码相关问题的，当时笔者还有个储电群，已经回答到不想回答了。</p>
+<p>如果只是这样，那还能接受，顶多累点去回答问题。但是，不知道是哪个挨千刀的先提出了“编码技术强于传统技术”这一说法，又符合不了解编码的人看到编全那么有现代感和科技感的第一反应，然后就传疯了。这一阶段入坑的大多数新人都认为“编码很NB，我一定要学会！”随之而来的就是大量自以为是的半灌水和对非编码技术的拉低、其实，数量之多远超储圈中正儿八经的研究者……笔者这种当时正在研究非编码的人被各种看不起，而这种风气一直到现在还在蔓延、发展。</p>
+<p>在云镇发布编全视频后不久，一位百万粉UP受邀前往云镇参观，并且在此之后发视频记录，封面重点强调了云镇的全物品，并在视频中大力赞扬编全，这位本身并不属于红石任何分支的UP的话总结一下就是：编码先进！这下编码厉害的观点彻底炸过了，这位UP在MC圈的影响力极大，这个视频的播放量目前已经突破40w。此后，不止技术圈的，整个MC圈子，乃至于圈外都知道储电中有这么个大宝贝儿：“高级、高速、方便还好装”。</p>
+<p>要了解后面的事就必须要学编码了，本书将在第13章再继续论述（第11、12章就是编码专题），在这里笔者可以先说结论：编码技术目前仍是最不成熟的储电技术之一，实用性方面和传统全物品想必并没有大优势，尤其是对绝大多数服务器来说，如果你的量产能力没有特别离谱且服务器体量极大，全编是没有任何性能优势的，所谓编码神化论完全就是信息茧房营造的骗局。</p>
+<p>所以，请读者沉下心来，先不要想着学编码，编码对基础的要求是很高的。先把非编码的学懂了，基础打扎实了，再去把编码当兴趣爱好学，一上来就学编码的储电研究者极少，完全钻研编码真正走出来的大佬更是没有先例。</p>
+<h4 id="3_2">（3）吃瓜、开团、间谍<a class="headerlink" href="#3_2" title="Permanent link">&para;</a></h4>
+<p>这里笔者先自己反省一下，笔者先前也有过吃瓜、开团的经历，现在思考感觉这是一场罪过。先前加入过一些服务器，又一次同一天加了几个服（个人习惯不时寻找生电服，因为生电服活跃程度普遍不高还容易倒闭，本人又比较吃氛围并且上线频率极高，所以加的服多），恰巧有个玩家在我当天加的所有服中（具体就不透露ID了），给他吓得以为我是来吃他瓜的。他在其中一个服的群内说“哦，玩儿储的啊，那没事了。”当时感觉挺好笑，现在看来……外圈人对储圈的印象竟已至此。</p>
+<p>林子大了什么鸟都有，近些年互联网上自以为是、哗众取宠和欣慰逆天的人越来越过。MC、尤其是储电圈中这类人非常多，经常会有类似“神人XXX日仙人球”这种程度的引人关注的消息出现，然后就在各个生、储电群中被光速转发，一人知、万人知。</p>
+<p>这种风气其实并不好，一是转发一般不经过当事人同意，违反了相关法律规定；二是当事人可能已经悔过，但是这种行为剥夺了其悔过的机会，乐子人人转，但是公开致歉之类的几乎没人转，因为没意思；三十难免有组价、主观、片面事件，大多数转发内容都不是真相，或者是“竞争性真相”；四是不利于圈子河西，常因此衍生出很多矛盾。</p>
+<p>开团就更恶劣一点了。拿2025年李芒果事件来说：SCI是国外老牌生电强服，李芒果是国外MC大佬（名字leemango音译），SCI服主。国内有个XXS冒充李芒果在国内开SCI服，点进审核群时笔者人都傻了，半格储圈和小部分生电圈的人都跑这儿来阴阳怪气了，对于一个小学生干这种事……有必要吗？</p>
+<p>大多数开团的人根本就不是为了伸张正义，而是单纯为了满足自己的猎奇心理来找乐子。谁年轻时没犯过错？谁生来就知道善恶美丑？我们应该多一份包容，哪怕你不愿意为了一个很搞笑的事情去耐心至少当事人，至少也请不要吃那遇到类似开团这类的活动中来。</p>
+<p>另一种典型的开团形式就是：XX发现了个乐子服（例如生存开创造之类的，违背了人们对生电服的基本要求的服务器），然后就把入服方式打死转发，完事儿一堆人进服去炸服、水群，扰乱群/服治安。很少有人想过：传出乐子消息的人，他是什么身份和心理？哪些在乐子中的人又是什么身份和职位？服内都是乐子人吗？</p>
+<p>上述两类行为很普遍，但深度思考过的人很少，大多是有些没脑子的人在带节奏，后面的直接跟风，还望读者静下心来审视一下这些事件。如果你还认为没问题，那我无话可说，这是价值观的问题。</p>
+<p>不过，间谍行为就没什么好争辩的了，这无疑是令人愤怒的。常言道：“身正不怕影子斜”，可又怕说者无意、听/传者有心。很多网络上的矛盾冲突就来源于间谍行为，它分为两种：一是未经同意转发聊天信息，而是非法盗窃他人劳动成果。后者同前文提到的抄袭一样，都是严重侵害劳动者知识产权的违法行为。而前者，看似问题不大，其他人既然敢说出来，我为什么不能转发？相信读了以上内容，情商正常的人都知道这有多可笑了吧。</p>
+<p>以上三类只是最主要的问题，储圈小问题还有一堆，但是无关紧要。</p>
+<h3 id="053">0.5.3混圈指南和学习建议<a class="headerlink" href="#053" title="Permanent link">&para;</a></h3>
+<p>尽管目前储电圈问题仍然很严重，但是入圈对于新人学习储电来说几乎是必要的。圈子的好处显而易见：你可以随意询问研究中遇到的问题、学习群友平时分享的各种知识和技巧、从大佬间的讨论中得到学不到的知识、最先了解科技前沿甚至参与研究等等等等。在圈子内混久了也会逐渐依格上这个闻着臭吃着香的东西，除非是真正的天赋型大佬，不然有圈子一定进步更快。本小节列举出一些混圈的注意事项。以及学习储电的方法。</p>
+<h4 id="1_2">（1）培养批判性思维<a class="headerlink" href="#1_2" title="Permanent link">&para;</a></h4>
+<p>目前，我们正处于“后真相时代”和信息社会，主要特征为：</p>
+<ul>
+<li>①.情绪优于事实。</li>
+<li>②.真相的不确定性和权威性削弱 </li>
+<li>③.事实碎片化、片而化解读。</li>
+<li>④.“确认偏误”与“信息茧房”加剧。 </li>
+<li>⑤.真相滞后而谣言高速传播。 </li>
+<li>⑥.身份认同高子事实核查。</li>
+</ul>
+<p>在这种大环境下，批判性思维尤为重要，我们需要做到以下几点：</p>
+<ul>
+<li>深度思考：对于学校中的学生事说，深度思考是常态：但在互可联网上，深度思考太难了。许多看似棘手的问题，在深度思考后很容易得出结果，例如：一道数学压轴题，给你一支笔、一个草稿本和一间适于学习的静室，可能很快就完事了；但要是给你个电脑，一会儿聊天，一气儿刷刷视频，思维难以深入，可能一下午读不完题。请在遇到问题时到一个没有电子产品的学习室中深度思考一会儿，平时也要注意经常深度思考最近发生的事，这会大大降低犯错的概率，也利于培养深度研究的习惯。</li>
+<li>多发问：这个是事实吗？是竞争性真相吗？有数据支持吗？很多谣言是站不住脚的，像锁漏斗这个议题，很多人的观点毫无数据支持，一做实验就清楚了。</li>
+<li>从不同角度发问，寻找多元视角，及时回答问题，保持头脑清西醒，这是不被谣言盎惑的保障。</li>
+</ul>
+<h4 id="2_3">（2）实践、实验才实在<a class="headerlink" href="#2_3" title="Permanent link">&para;</a></h4>
+<p>实践是检验真理的唯一标准，技术研究是必须要落实到实践上的。如果你有什么好的想法，请尽快实践研究，否则灵感转瞬即逝，很难再找回。哪怕不能马上实践，也请先把它记录下来避免遗忘。</p>
+<p>对于用于验证思路等的实验／概念机，布线应遵从简洁、清晰的原则。一般使用白色玻璃＋白色混凝土为主体材料，能用玻璃的地方就不要用混凝土了，一是减卡，二是方便观察，三是让人能更方便地分折线路，例如下图，对比很鲜明。</p>
+<p><img alt="img预留位" src="" /></p>
+<p>而实验则是储电中最重要的部分之一。实验按内容分有：稳定性测试、随机输入测成、黑盒测试、概率测验、高压运行测试、卡顿测试等等，实验常用方法有：控制变量法、等效替代法、微小量放大法、断点测试法等。说得复杂，但其实义务教育认真读完的话，上手实验实很容易，不需要教，所以本文不会花时间在具体实验上，下而只列学一些常见问题:</p>
+<ul>
+<li>实验时间和环境：一般实验时间大概在1Omin~2h和1d~1m这两区间，前者精度不高，一般用于临时验证可行性，后者则是最常规的实验时间，大多数数据都来自于这么长时间的测试，一般实验在中至大型生电服专门的虚空测试服中进行，标配一般是13900/14900/9950+8G13内存＋锂＋mcdr+fabric+carpet。</li>
+<li>输入装置：大多储电机器都需要接输入测试，不过不同类型的测试所需的输入装置不同，除了小部分可用canet的羊毛漏斗外，大多都要借助命令方块和时钟来完战。我将常用的几类归纳在了下图，这些装置的投影以及以后所有能公布投影的机器／建筑的投影，都会放在Github仓库里了。若难以连接Github,远有Gitee可供下载。</li>
+<li>卡顿测试：这个要测得比较精准的话，得要硬件设施比较能打，以及carpet的辅助（1.21后原版也行）。以测静态卡顿占用为例，先确保服务器中只有你在测试时会产生卡顿变化，最好是只有你一个人，并且没有正在加载的卡顿极不稳定的机器。然后用tick warp一段时间（差不多50t）将MSPT稳定下来并舍弃本次数据，再用tick warp 5000测至少5次静态背景卡顿（命令返回值有xx mspt）,取平均值记为$n_1$.接着，把待测机器粘出来，tick warp 5000测至少6次，舍弃第1次数据再取平均值记为$n_2$,则$n_1-n_2$即为待测机器的静态卡顿占用。</li>
+<li>发布数据：没有说明的数据是无效的，发布数据时常需附上测试环境、测试内容和测试结果。例：“测试环境：14900kf+16GBBAM 虚空有锂 静态卡顿占用：0.81mmt动态卡顿（28.8w/h混合物品流输入，详见附表）：1.3mspt”。很多时候数据需统计成表格，常用制表、图片编辑工里有：飞书、WPS、腾讯文档等。</li>
+</ul>
+<h4 id="3_3">（3）积极交流、发问<a class="headerlink" href="#3_3" title="Permanent link">&para;</a></h4>
+<p>开放才能发展，封闭必然落后。闭门造车是研究大忌。很多时候我则设计了一个机器，还在为自己的精巧设计沾占自喜，就在储电群里发现了更好的设计。如果不出意外的话，更好的作品就快诞生了。每个人的思维都是不同的，取长补短，吸收他人精巧的设计，这对技术提升来说是必要的。假若我没发现这个更好的作品，可能就止步于此了，甚至有的人还会认为自己的作品相当完美，视频刚发出来就被挂出来了。</p>
+<p>储电群专为储生们交流技术而生，技术交流是常态，没人会感到新鲜，不必担心太亮眼，虚心请教别人，真实、详尽、准确地提出自己研究中遇到的疑问，总有人愿意回答。除了一些顶级大佬可能比较忙外，其它储生大多都是很和善的，储电群里基本有问必答。当然，前提是，情商正常。礼貌是基本要求，问的问题也必须详细。例如：“各位大佬，我在设计大宗时发现活塞柱不复位，请问能帮忙看一下到底是哪儿出了问题吗？这是切片图（图略）”。这种才是正常发问，哪些逆天玩意少来，看着都烦人。</p>
+<p>可能有时交流技术时会遇到火药桶，还有老师型的人（“这都不会？这么基础的问题。”），既然是来问问题的，那就请把态度放低一点，尽量避免争吵，这种人一般是会有群U让ta耐心点的，大不了换个地方问，真遇到了畜生，群管理不会坐视不管的。还是那句话，正常问，会有人回答的。</p>
+<h4 id="4_2">（4）多看多想多积累见识<a class="headerlink" href="#4_2" title="Permanent link">&para;</a></h4>
+<p>现在储电体系已经很庞大了，作品也非常多，技术迭代速度也不算慢，正是学储电的黄金时期。没事儿的话多看看各大档案馆，碰到有意思的下下来研究一下；刷刷B站上有趣、高级的机器，随手点开储电群发的续写资料……都能增长自己的见识。量变引起质变，好点子多了，创新就来了。尽管我把它放在第4点，但是这4点的重要性是等同的，都是技术进阶的必经之路。</p>
+<h4 id="5_1">（5）针对非新人<a class="headerlink" href="#5_1" title="Permanent link">&para;</a></h4>
+<p>我个人其实很赞同一个观点：“玩储不混圈，快乐似神仙”。当你已经积累了一定的技术和人目脉的话，可以好好考虑下到底要不要留在圈子内。尤其是某些大储电群，人多，思路多，但烦心事也多。是你和我一样，彻底厌倦了这些烦心事，那就不妨放下它们吧，退圈……成许是一个好的归宿。</p>
+<h2 id="0_1">0.小结<a class="headerlink" href="#0_1" title="Permanent link">&para;</a></h2>
+<p>本章是启蒙章，系统讲解了储电的定义、历史、处理思维、圈子和前置学习，内容较多，也偏理论，需要较长时间消化。储电的学习才刚开始，从下一章起将加入大量实践内容，正式开始储电知识的学习，请读者做好准备。</p>
+<h1 id="_1">思考·积累<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<ol>
+<li>下列有关储电、生电概念的说法中，正确的有（$\quad$）</li>
+</ol>
+<p>A.熔炉组既可以储电机器，也可以是生电机器，还可能是二者结合。</p>
+<p>B.红石六大分支之一为狭义生电，指生存实用红石电路。</p>
+<p>C.生电是储电的基础，储电是生电的延伸，二者是从属关系。</p>
+<p>D.储电的研究仅涉及理论，具体的方案实施是生电的内容。</p>
+<p><span class="PSTG-red">答案</span>：<span class="PSTG-spoiler" data-tooltip="点击或悬停显示">$\quad$<strong>A</strong>$\quad$</span></p>
+<p><span class="PSTG-red">详解</span>:<span class="PSTG-spoiler" data-tooltip="点击或悬停显示">对于<em>A</em>：看二者技术成分占比。$\quad$对于<em>B</em>：应该是广义生电 $\quad$对于<em>C</em>：并非从属关系$\quad$对于<em>D</em>：具体实施仍是储电的内容</span></p>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "toc.integrate", "content.code.copy", "content.tooltips", "katex"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+      
+        <script src="../javascripts/service-worker-register.js"></script>
+      
+        <script src="../javascripts/lazy-image-loader.js"></script>
+      
+        <script src="../javascripts/navigation.js"></script>
+      
+        <script src="../javascripts/media.js"></script>
+      
+        <script src="../javascripts/ui.js"></script>
+      
+        <script src="../javascripts/reading.js"></script>
+      
+        <script src="../javascripts/first-visit.js"></script>
+      
+        <script src="../javascripts/core.js"></script>
+      
+    
+  </body>
+</html>

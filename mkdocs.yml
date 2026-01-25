@@ -1,0 +1,57 @@
+site_name: Plain Storage Tech Guide
+
+theme:
+  name: material
+  language: zh
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - toc.integrate
+    - content.code.copy
+    - content.tooltips
+    - katex
+  palette:
+    - scheme: default
+      primary: blue
+      accent: light-blue
+  font:
+    text: Roboto
+    code: Roboto Mono
+
+plugins:
+  - search
+
+markdown_extensions:
+  - toc:
+      toc_depth: 6
+      permalink: true
+  - pymdownx.superfences
+  - PSTGmarkdownAddition
+
+extra_css:
+  - stylesheets/core.css
+  - stylesheets/components.css
+  - stylesheets/syntax.css
+  - stylesheets/themes.css
+  - https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css
+
+extra_javascript:
+  - https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js
+  - https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js
+  - javascripts/service-worker-register.js
+  - javascripts/lazy-image-loader.js
+  - javascripts/navigation.js
+  - javascripts/media.js
+  - javascripts/ui.js
+  - javascripts/reading.js
+  - javascripts/first-visit.js
+  - javascripts/core.js
+
+extra:
+  analytics:
+    provider: false
+  extra_head: |
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+    <meta name="theme-color" content="#667eea">
