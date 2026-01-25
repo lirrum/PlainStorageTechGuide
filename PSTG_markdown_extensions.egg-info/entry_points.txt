@@ -1,2 +1,0 @@
-[markdown.extensions]
-PSTGmarkdownAddition = PSTG_markdown:makeExtension
