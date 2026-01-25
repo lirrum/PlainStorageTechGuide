@@ -338,8 +338,8 @@ class ChapterNavigation {
     createNavigationButton(page, type, text, chapterTitle) {
         const button = document.createElement('a');
         button.className = `chapter-nav-btn chapter-nav-${type}`;
-        let href = '/';
-        if (page.path) href = '/' + page.path + '/';
+        let href = window.location.origin + '/PlainStorageTechGuide/';
+        if (page.path) href = window.location.origin + '/PlainStorageTechGuide/' + page.path + '/';
         button.href = href;
         button.innerHTML = `
             <div class="nav-direction">${text}</div>
@@ -356,13 +356,17 @@ class ChapterNavigation {
             
             if (e.key === 'ArrowLeft' && adjacent.prev && !e.ctrlKey && !e.metaKey) {
                 e.preventDefault();
-                const href = adjacent.prev.path ? '/' + adjacent.prev.path + '/' : '/';
+                const href = adjacent.prev.path 
+                    ? window.location.origin + '/PlainStorageTechGuide/' + adjacent.prev.path + '/' 
+                    : window.location.origin + '/PlainStorageTechGuide/';
                 window.location.href = href;
             }
             
             if (e.key === 'ArrowRight' && adjacent.next && !e.ctrlKey && !e.metaKey) {
                 e.preventDefault();
-                const href = adjacent.next.path ? '/' + adjacent.next.path + '/' : '/';
+                const href = adjacent.next.path 
+                    ? window.location.origin + '/PlainStorageTechGuide/' + adjacent.next.path + '/' 
+                    : window.location.origin + '/PlainStorageTechGuide/';
                 window.location.href = href;
             }
         });
